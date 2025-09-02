@@ -1,0 +1,62 @@
+﻿# --- AI, NLP, Machine Learning ---
+transformers
+torch
+sentence-transformers
+faiss-cpu
+scikit-learn
+tqdm
+
+# --- Audio / Giọng nói ---
+pyaudio
+speechrecognition
+pyttsx3
+pydub
+gtts
+sounddevice
+
+# --- Image / Video ---
+opencv-python
+pillow
+
+# --- API / Web Crawler ---
+requests
+bs4
+duckduckgo-search
+aiohttp
+
+# --- Cloud & Đồng bộ ---
+pydrive
+python-dotenv
+pygithub       # để sync GitHub
+gitpython      # hỗ trợ commit/push GitHub
+
+# --- Đầu tư / Phân tích dữ liệu ---
+yfinance
+pandas
+numpy
+matplotlib
+
+# --- Hệ thống / Tiện ích ---
+keyboard
+
+# --- Kết nối mạng (Wi-Fi) ---
+websockets     # realtime Wi-Fi communication
+# (socket TCP có sẵn trong Python, không cần thêm)
+
+# --- Bluetooth ---
+bleak          # cross-platform
+pybluez        # Linux/Windows
+
+# --- Xuất file (PDF, Word, Excel, PowerPoint, ODT, RTF, TXT, MD) ---
+reportlab
+python-docx
+python-pptx
+openpyxl
+odfpy
+pypandoc
+
+# --- Bảo mật / An toàn ---
+cryptography
+paramiko       # SSH nếu dùng
+whois
+ipwhois

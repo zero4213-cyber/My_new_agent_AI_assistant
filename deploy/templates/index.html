@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Assistant Voice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 40px;
+    }
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #micBtn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🤖 Trợ lý AI có giọng nói</h2>
+  <input id="textInput" type="text" placeholder="Hoặc nói điều gì đó..." style="width: 80%;"><br>
+  <button onclick="sendText()">Gửi</button>
+<button onclick="syncGithub()">🔄 Đồng bộ GitHub</button>
+  <button id="micBtn" onclick="startListening()">🎤</button>
+  <p id="response"></p>
+
+  <script>
+    const responseEl = document.getElementById("response");
+    const inputEl = document.getElementById("textInput");
+
+    function sendText(text = null) {
+      const query = text || inputEl.value;
+      if (!query) return;
+      fetch("/ask?q=" + encodeURIComponent(query))
+        .then(res => res.text())
+        .then(result => {
+          responseEl.textContent = result;
+          speak(result);
+        });
+    }
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "vi-VN";
+      utterance.pitch = 1;
+      utterance.rate = 1;
+      utterance.voice = speechSynthesis.getVoices().find(v => v.name.toLowerCase().includes("female") || v.lang.includes("vi"));
+      speechSynthesis.speak(utterance);
+    }
+
+    function startListening() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói. Vui lòng dùng Chrome hoặc Edge.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "vi-VN";
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        inputEl.value = transcript;
+        sendText(transcript);
+      };
+
+      recognition.onerror = function(event) {
+        if (event.error !== "no-speech") {
+          alert("Lỗi khi ghi âm: " + event.error);
+        }
+      };
+
+      recognition.start();
+    }
+  
+    function syncGithub() {
+      fetch("/sync_github").then(res => res.text()).then(alert);
+    }
+    
+</script>
+</body>
+</html>

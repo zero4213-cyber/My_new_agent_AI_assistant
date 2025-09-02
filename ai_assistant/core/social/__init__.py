@@ -1,0 +1,1 @@
+# Khởi tạo module cho ai_assistant/social

@@ -1,0 +1,40 @@
+# --- deploy (giao diện chạy AI mẹ) ---
+streamlit
+flask
+flask-socketio
+gradio
+
+# --- ai_assistant (xử lý AI, NLP, ML) ---
+transformers
+torch
+sentence-transformers
+faiss-cpu
+scikit-learn
+
+# --- ai_mother_android (Bluetooth, âm thanh, tương tác) ---
+pyaudio
+speechrecognition
+pyttsx3
+pydub
+gtts
+sounddevice
+
+# --- image/audio xử lý ---
+opencv-python
+pillow
+
+# --- API / Web / Crawler ---
+requests
+bs4
+duckduckgo-search
+aiohttp
+
+# --- cloud, môi trường, đồng bộ ---
+pydrive
+python-dotenv
+
+# --- đầu tư ---
+yfinance
+pandas
+numpy
+matplotlib

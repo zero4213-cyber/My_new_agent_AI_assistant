@@ -1,0 +1,11 @@
+{
+  "name": "Lilith",
+  "modules": {
+    "semantic_engine": "new",
+    "network_lookup": "new",
+    "learning_recommendation": "new",
+    "task_manager": "new",
+    "firewall_guard": "new",
+    "ai_generator": "new"
+  }
+}

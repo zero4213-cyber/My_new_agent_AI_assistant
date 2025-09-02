@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Avatar Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #avatar {
+      width: 250px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .speaking {
+      animation: glow 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); }
+      to   { box-shadow: 0 0 40px rgba(0, 255, 255, 0.7); }
+    }
+    .blink {
+      animation: blinkEyes 0.5s steps(1) 3;
+    }
+    @keyframes blinkEyes {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(0.2); }
+    }
+  </style>
+</head>
+<body>
+  <img id="avatar" src="/static/avatar_anime.png" alt="AI Avatar">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script>
+    const avatar = document.getElementById("avatar");
+    const socket = io();
+
+    socket.on("connect", () => {
+      console.log("📡 Kết nối socket thành công.");
+    });
+
+    socket.on("speaking", () => {
+      avatar.classList.add("speaking", "blink");
+      setTimeout(() => {
+        avatar.classList.remove("speaking", "blink");
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
